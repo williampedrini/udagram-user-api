@@ -1,0 +1,53 @@
+{
+  "name": "udagram-user-api",
+  "version": "1.0.0",
+  "description": "User API responsible for managing CRUD operations related to users.",
+  "main": "./server.js",
+  "scripts": {
+    "build": "npm run clean && npm install && tsc && npm run copyBuildFiles",
+    "clean": "rm -rf www/ || true",
+    "copyBuildFiles": "cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json",
+    "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts",
+    "dockerBuildImage": "docker build -t williamcustodio/udagram_user_api:latest .",
+    "dockerPushImage": "docker push williamcustodio/udagram_user_api:latest",
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc"
+  },
+  "keywords": [],
+  "author": "William Custodio",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.429.0",
+    "bcrypt": "latest",
+    "body-parser": "^1.18.3",
+    "class-transformer": "^0.2.3",
+    "class-validator": "0.10.1",
+    "email-validator": "latest",
+    "express": "^4.16.4",
+    "microframework-w3tec": "^0.6.3",
+    "pg": "^7.9.0",
+    "reflect-metadata": "^0.1.13",
+    "routing-controllers": "0.8.0",
+    "sequelize": "^5.21.5",
+    "sequelize-typescript": "^0.6.9",
+    "string-format": "^2.0.0",
+    "typed-rest-client": "^1.7.1",
+    "typedi": "^0.8.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/bluebird": "^3.5.26",
+    "@types/express": "^4.16.1",
+    "@types/node": "^11.11.6",
+    "@types/sequelize": "^4.27.44",
+    "@types/validator": "^10.9.0",
+    "ts-node-dev": "^1.0.0-pre.32",
+    "tslint": "^5.14.0",
+    "typescript": "^3.3.4000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/williampedrini/udagram.git"
+  }
+}

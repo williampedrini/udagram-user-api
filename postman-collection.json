@@ -1,0 +1,113 @@
+{
+  "info": {
+    "_postman_id": "ab198eb4-745b-4ef5-87e9-25ff36992624",
+    "name": "User API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Find User By Email",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{userApp}}/users/rafael1@pedrinicustodio.com",
+          "host": [
+            "{{userApp}}"
+          ],
+          "path": [
+            "users",
+            "rafael1@pedrinicustodio.com"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"email\": \"rafael1@pedrinicustodio.com\",\n    \"password\": \"11\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{userApp}}/users",
+          "host": [
+            "{{userApp}}"
+          ],
+          "path": [
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Token Verification",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "05e43225-e4f9-4821-9980-22f497e603ba",
+            "exec": [
+              "let requestBody = {",
+              "\t\"token\": pm.environment.get(\"jwtToken\")",
+              "}",
+              "pm.environment.set(\"requestBody\", JSON.stringify(requestBody));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{{requestBody}}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{authApp}}/auth/verification",
+          "host": [
+            "{{authApp}}"
+          ],
+          "path": [
+            "auth",
+            "verification"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "protocolProfileBehavior": {}
+}
