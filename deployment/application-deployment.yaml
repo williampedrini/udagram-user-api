@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: user-api
+  template:
+    metadata:
+      labels:
+        name: user-api
+        version: 1.0.0
+        component: api
+    spec:
+      containers:
+        - name: user-api-container
+          env:
+            - name: POSTGRESS_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: user-secret
+                  key: database-username
+            - name: POSTGRESS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: user-secret
+                  key: database-password
+            - name: POSTGRESS_DB
+              valueFrom:
+                secretKeyRef:
+                  name: user-secret
+                  key: database-schema
+            - name: POSTGRESS_HOST
+              value: "user-database"
+            - name: POSTGRESS_PORT
+              value: "5432"
+            - name: AUTHENTICATION_API_HOST
+              value: "authentication-api"
+          image: williamcustodio/udagram_user_api:latest
+          ports:
+            - containerPort: 8083
