@@ -8,8 +8,12 @@ services:
 # fail, build the images (if this step fails
 # the whole Travis build is considered a failure).
 script:
-  - 'make build'
-  - 'make image'
+  - 'make aws-client'
+  - 'make aws-credentials'
+  - 'make aws-eksctl'
+  - 'make aws-eksctl-configuration'
+  - 'make kubectl'
+  - 'make deployment'
 
 # only execute the following instructions in
 # the case of a success (failing at this point
