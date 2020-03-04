@@ -6,6 +6,7 @@ services:
 # Build the application.
 script:
   - 'make build'
+  - 'make image'
 
 # only execute the following instructions in
 # the case of a success (failing at this point
