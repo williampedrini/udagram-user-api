@@ -16,7 +16,6 @@ script:
 # page of your repository and then change the
 # environment in the settings panel.
 after_success:
-  - 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
   - 'make push-image'
   - 'make aws-client'
   - 'make aws-credentials'
