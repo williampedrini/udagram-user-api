@@ -1,4 +1,4 @@
-# Rest House API
+# Udagram User API
 
 This project contains a User API responsible for managing CRUD operations related to users.
 
